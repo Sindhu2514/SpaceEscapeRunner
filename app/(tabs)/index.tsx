@@ -105,7 +105,7 @@ y:newY,
 );
 },16);
 return()=>clearInterval(asteroidMovement);
-},[gameStarted]);
+},[gameStarted,gameOver]);
 
 useEffect(()=>{
 const collisionCheck=setInterval(()=>{
@@ -197,9 +197,15 @@ resizeMode="contain"
 {gameOver&&(
 <View style={styles.gameOverContainer}>
 <Text style={styles.gameOverText}>GAME OVER</Text>
+
+<Text style={styles.finalScoreText}>
+Final Score: {score}
+</Text>
+
 <Pressable style={styles.restartButton} onPress={resetGame}>
 <Text style={styles.restartText}>RESTART</Text>
 </Pressable>
+
 </View>
 )}
 
@@ -236,12 +242,24 @@ alignItems:"center",
 zIndex:500,
 backgroundColor:"rgba(0,0,0,0.5)",
 },
+
 startTitle:{
 color:"#FFFFFF",
 fontSize:45,
 fontWeight:"900",
 marginBottom:40,
 },
+
+finalScoreText:{
+  fontSize:24,
+  fontWeight:"bold",
+  color:"#FFD700",
+  marginBottom:20,
+  textShadowColor:"black",
+  textShadowOffset:{width:1,height:1},
+  textShadowRadius:3,
+},
+
 startButton:{
 width:180,
 height:60,
@@ -250,6 +268,7 @@ backgroundColor:"#FFFFFF",
 justifyContent:"center",
 alignItems:"center",
 },
+
 startText:{
 color:"#6A00FF",
 fontSize:22,
