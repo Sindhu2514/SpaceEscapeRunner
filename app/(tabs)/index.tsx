@@ -7,38 +7,50 @@ const ROCKET_WIDTH=75;
 const ROCKET_HEIGHT=90;
 const MOVE_STEP=8;
 const ASTEROID_SIZE=60;
-const ASTEROID_SPEED=5;
+const BASE_ASTEROID_SPEED=5;
+const MAX_ASTEROID_SPEED=10;
 
 type Asteroid={
 x:number;
 y:number;
+speed:number;
 };
 
 export default function HomeScreen(){
 
-const createAsteroid=()=>{
+const createAsteroid=(y:number=-ASTEROID_SIZE,speed:number=BASE_ASTEROID_SPEED):Asteroid=>{
 return{
 x:Math.random()*(width-ASTEROID_SIZE),
-y:-ASTEROID_SIZE,
+y,
+speed,
 };
 };
 
 const [rocketX,setRocketX]=useState((width-ROCKET_WIDTH)/2);
+
 const [asteroids,setAsteroids]=useState<Asteroid[]>([
-createAsteroid(),
-{x:Math.random()*(width-ASTEROID_SIZE),y:-300},
-{x:Math.random()*(width-ASTEROID_SIZE),y:-600},
+createAsteroid(-ASTEROID_SIZE),
+createAsteroid(-300),
+createAsteroid(-600),
 ]);
+
 const [score,setScore]=useState(0);
+const scoreRef=useRef(0);
+
 const [bestScore,setBestScore]=useState(0);
+
 const [gameOver,setGameOver]=useState(false);
 const [gameStarted,setGameStarted]=useState(false);
 
-
 const [exploding,setExploding]=useState(false);
+
 const moveDirection=useRef<"left"|"right"|null>(null);
 const gameOverRef=useRef(false);
 const collisionRef=useRef(false);
+
+useEffect(()=>{
+scoreRef.current=score;
+},[score]);
 
 const stopMoving=()=>{
 moveDirection.current=null;
@@ -61,13 +73,14 @@ gameOverRef.current=false;
 collisionRef.current=false;
 setRocketX((width-ROCKET_WIDTH)/2);
 setAsteroids([
-{x:Math.random()*(width-ASTEROID_SIZE),y:-ASTEROID_SIZE},
-{x:Math.random()*(width-ASTEROID_SIZE),y:-300},
-{x:Math.random()*(width-ASTEROID_SIZE),y:-600},
+createAsteroid(-ASTEROID_SIZE),
+createAsteroid(-300),
+createAsteroid(-600),
 ]);
 setScore(0);
 setGameOver(false);
 setGameStarted(false);
+setExploding(false);
 moveDirection.current=null;
 };
 
@@ -87,23 +100,33 @@ return()=>clearInterval(movement);
 useEffect(()=>{
 const asteroidMovement=setInterval(()=>{
 if(gameOverRef.current||!gameStarted)return;
+
 setAsteroids(prev=>
 prev.map((asteroid)=>{
-let newY=asteroid.y+ASTEROID_SPEED;
+let newY=asteroid.y+asteroid.speed;
+
 if(newY>height){
-setScore(old=>old+1);
-return{
-x:Math.random()*(width-ASTEROID_SIZE),
-y:-ASTEROID_SIZE-Math.random()*300,
-};
+const newScore=scoreRef.current+1;
+setScore(newScore);
+
+return createAsteroid(
+-ASTEROID_SIZE-Math.random()*300,
+Math.min(
+BASE_ASTEROID_SPEED+Math.floor(newScore/10),
+MAX_ASTEROID_SPEED
+)
+);
 }
+
 return{
 x:asteroid.x,
 y:newY,
+speed:asteroid.speed,
 };
 })
 );
 },16);
+
 return()=>clearInterval(asteroidMovement);
 },[gameStarted,gameOver]);
 
@@ -137,6 +160,7 @@ setTimeout(()=>{
 setExploding(false);
 setGameOver(true);
 },1500);
+
 setBestScore(prev=>Math.max(prev,score));
 moveDirection.current=null;
 }
@@ -149,21 +173,26 @@ return()=>clearInterval(collisionCheck);
 
 return(
 <View style={styles.container}>
-  {!gameStarted&&(
+{!gameStarted&&(
 <View style={styles.startContainer}>
 <Text style={styles.startTitle}>SPACE ESCAPE</Text>
-<Pressable style={styles.startButton} onPress={()=>{
-setGameStarted(true);
-}}>
+<Pressable
+style={styles.startButton}
+onPress={()=>setGameStarted(true)}>
 <Text style={styles.startText}>START GAME</Text>
 </Pressable>
 </View>
 )}
+
 <View style={styles.scoreContainer}>
 <Text style={styles.score}>Score: {score}</Text>
 <Text style={styles.bestScore}>Best: {bestScore}</Text>
 </View>
-<ImageBackground source={require("../../assets/images/space-bg.jpg")} style={styles.space} resizeMode="cover">
+
+<ImageBackground
+source={require("../../assets/images/space-bg.jpg")}
+style={styles.space}
+resizeMode="cover">
 
 {asteroids.map((asteroid,index)=>(
 <Image
@@ -212,11 +241,17 @@ Final Score: {score}
 </ImageBackground>
 
 <View style={styles.controls}>
-<Pressable style={styles.controlButton} onPressIn={startMovingLeft} onPressOut={stopMoving}>
+<Pressable
+style={styles.controlButton}
+onPressIn={startMovingLeft}
+onPressOut={stopMoving}>
 <Text style={styles.buttonText}>◀</Text>
 </Pressable>
 
-<Pressable style={styles.controlButton} onPressIn={startMovingRight} onPressOut={stopMoving}>
+<Pressable
+style={styles.controlButton}
+onPressIn={startMovingRight}
+onPressOut={stopMoving}>
 <Text style={styles.buttonText}>▶</Text>
 </Pressable>
 </View>
@@ -251,13 +286,13 @@ marginBottom:40,
 },
 
 finalScoreText:{
-  fontSize:24,
-  fontWeight:"bold",
-  color:"#FFD700",
-  marginBottom:20,
-  textShadowColor:"black",
-  textShadowOffset:{width:1,height:1},
-  textShadowRadius:3,
+fontSize:24,
+fontWeight:"bold",
+color:"#FFD700",
+marginBottom:20,
+textShadowColor:"black",
+textShadowOffset:{width:1,height:1},
+textShadowRadius:3,
 },
 
 startButton:{
@@ -339,7 +374,6 @@ textShadowOffset:{
 width:2,
 height:2,
 },
-
 textShadowRadius:5,
 },
 
