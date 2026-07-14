@@ -1,50 +1,226 @@
-# Welcome to your Expo app 👋
+# 🚀 Space Escape Runner
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Space Escape Runner is a fast-paced 2D endless space survival game developed using **React Native**, **Expo**, and **TypeScript**. Players control a rocket navigating through an increasingly challenging asteroid field while collecting shields to survive and achieve the highest possible score.
 
-## Get started
+---
 
-1. Install dependencies
+# 🚀 Features
 
-   ```bash
-   npm install
-   ```
+## 🎮 Gameplay
 
-2. Start the app
+- Endless Space Survival
+- Smooth Rocket Movement
+- Random Asteroid Generation
+- Multiple Asteroid Sizes
+- Dynamic Difficulty Progression
+- Increasing Asteroid Speed
+- Increasing Asteroid Count
+- Real-Time Score Tracking
+- Best Score Tracking
 
-   ```bash
-   npx expo start
-   ```
+---
 
-In the output, you'll find options to open the app in a
+## 🛡️ Shield System
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+- Shield Pickup
+- Temporary Invincibility
+- Shield Duration Timer
+- Shield Progress Bar
+- Shield Expiration Indicator
+- Dynamic Shield Spawn System
+- Shield Speed Scaling
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+---
 
-## Get a fresh project
+## 💥 Visual Effects
 
-When you're ready, run:
+- Rocket Explosion Animation
+- Space Background
+- Responsive UI
+- Smooth Object Animations
+- Game Over Screen
+- Restart Functionality
 
-```bash
-npm run reset-project
+---
+
+## ⚙️ Game Mechanics
+
+- Collision Detection
+- Difficulty Scaling
+- Randomized Gameplay
+- Real-Time Object Movement
+- Endless Survival Mode
+- Performance Optimized Game Loop
+
+---
+
+# 🛠️ Technologies Used
+
+| Technology | Purpose |
+|------------|---------|
+| React Native | Mobile App Development |
+| Expo | Development Framework |
+| TypeScript | Type Safety |
+| React Hooks | State & Lifecycle Management |
+| JavaScript | Game Logic |
+| Metro Bundler | Application Bundling |
+
+---
+
+# 📂 Project Structure
+
+```text
+SpaceEscapeRunner/
+│
+├── app/
+│   └── (tabs)/
+│       └── index.tsx
+│
+├── assets/
+│   └── images/
+│       ├── rocket.png
+│       ├── asteroid.png
+│       ├── shield.png
+│       ├── explosion.png
+│       └── space-bg.jpg
+│
+├── app.json
+├── package.json
+├── tsconfig.json
+├── README.md
+└── ...
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+---
 
-## Learn more
+# ⚙️ Installation
 
-To learn more about developing your project with Expo, look at the following resources:
+## 1️⃣ Clone the Repository
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+```bash
+git clone https://github.com/MSYathin10/SpaceEscapeRunner.git
+cd SpaceEscapeRunner
+```
 
-## Join the community
+> Replace the repository name if it is different.
 
-Join our community of developers creating universal apps.
+---
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+## 2️⃣ Install Dependencies
+
+```bash
+npm install
+```
+
+---
+
+## 3️⃣ Start the Expo Development Server
+
+```bash
+npx expo start
+```
+
+---
+
+## 4️⃣ Run the Application
+
+Choose one of the following:
+
+- Android Emulator
+- iOS Simulator
+- Physical Android Device (Expo Go)
+- Physical iPhone (Expo Go)
+
+---
+
+# 🎮 Gameplay Overview
+
+The objective of the game is simple:
+
+- Control the rocket using on-screen controls.
+- Avoid incoming asteroids.
+- Survive for as long as possible.
+- Collect shield power-ups.
+- Beat your highest score.
+
+As the player's score increases:
+
+- Asteroids move faster.
+- More asteroids spawn.
+- The game becomes increasingly challenging.
+- Shields spawn dynamically to assist survival.
+
+---
+
+# 📸 Project Demonstration
+
+Game screenshots and gameplay recordings can be added in the future.
+
+Suggested screenshots:
+
+```
+screenshots/
+├── home-screen.png
+├── gameplay.png
+├── shield.png
+├── explosion.png
+└── game-over.png
+```
+
+---
+
+# 🎯 Project Objectives
+
+- Develop an engaging endless arcade-style mobile game.
+- Demonstrate React Native game development concepts.
+- Implement smooth animations and object movement.
+- Practice collision detection algorithms.
+- Create scalable game difficulty mechanics.
+- Design an intuitive and responsive mobile interface.
+
+---
+
+# 👨‍💻 Author
+
+**Yathin Manugula**
+
+### GitHub
+
+https://github.com/MSYathin10
+
+---
+
+# 📈 Future Enhancements
+
+- 🔊 Background Music & Sound Effects
+- ❤️ Multiple Lives System
+- ⭐ Power-Up Collection
+- 🪙 Coin Collection System
+- 🚀 Rocket Upgrades
+- 🎨 Multiple Space Themes
+- 👾 Boss Battles
+- 🌍 Global Leaderboard
+- 🏆 Achievement System
+- 💾 Cloud Save Support
+- 🎮 Touch Gesture Controls
+- 📱 Haptic Feedback
+
+---
+
+# 📜 License
+
+This project is intended for educational and learning purposes.
+
+---
+
+# ⭐ Support
+
+If you found this project useful, consider giving the repository a **Star ⭐** on GitHub.
+
+Your support is greatly appreciated and helps showcase the project to a wider audience.
+
+---
+
+# 🚀 Space Escape Runner v1.0
+
+A modern endless space survival game built with **React Native**, **Expo**, and **TypeScript**, featuring dynamic gameplay, shield mechanics, and progressive difficulty.
