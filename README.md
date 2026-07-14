@@ -98,7 +98,7 @@ SpaceEscapeRunner/
 ## 1️⃣ Clone the Repository
 
 ```bash
-git clone https://github.com/MSYathin10/SpaceEscapeRunner.git
+git clone https://github.com/Sindhu2514/SpaceEscapeRunner.git
 cd SpaceEscapeRunner
 ```
 
@@ -205,11 +205,11 @@ As the player's score increases:
 
 # 👨‍💻 Author
 
-**Yathin Manugula**
+**Sindhu Sri Gogikari**
 
 ### GitHub
 
-https://github.com/MSYathin10
+https://github.com/MSYathin1
 
 ---
 
